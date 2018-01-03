@@ -3,12 +3,10 @@ var express = require('express'),
   compress = require('compression'),
   bodyParser = require('body-parser'),
   methodOverride = require('method-override'),
-  path = require('path'),  //static path setting
   config = require('./config'),
   session = require('express-session'),
   passport = require('passport'),
-  flash = require('connect-flash')
-  ;
+  flash = require('connect-flash');
 
 module.exports = function(){
   var app = express();
@@ -41,6 +39,6 @@ module.exports = function(){
   require('../app/routes/index.server.routes.js')(app);
   require('../app/routes/users.server.routes.js')(app);
   require('../app/routes/admin.server.routes.js')(app);
-  app.use(express.static(path.join(__dirname, 'static')));
+  app.use(express.static('./public'));
   return app;
 }

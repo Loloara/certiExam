@@ -1,0 +1,22 @@
+Server running at localhost
+MongoDB connected
+save
+[0mPOST /signup [36m302 [0m39.924 ms - 23[0m
+[0mGET / [32m200 [0m14.226 ms - 203[0m
+[0mGET /users [32m200 [0m4.860 ms - 268[0m
+[0mGET /users [32m200 [0m2.817 ms - 268[0m
+ValidationError: User validation failed: password: Password should be at least 8 characters
+    at new ValidationError (D:\project\certiExam\node_modules\mongoose\lib\error\validation.js:27:11)
+    at model.Document.invalidate (D:\project\certiExam\node_modules\mongoose\lib\document.js:1643:32)
+    at D:\project\certiExam\node_modules\mongoose\lib\document.js:1515:17
+    at Immediate.<anonymous> (D:\project\certiExam\node_modules\mongoose\lib\schematype.js:779:9)
+    at runCallback (timers.js:773:18)
+    at tryOnImmediate (timers.js:734:5)
+    at processImmediate [as _immediateCallback] (timers.js:711:5)
+[0mPOST /users [31m500 [0m4.645 ms - 835[0m
+[0mGET /users [32m200 [0m2.538 ms - 268[0m
+[0mPOST /users [32m200 [0m14.293 ms - 265[0m
+[0mGET /users [32m200 [0m3.026 ms - 534[0m
+[0mGET / [36m304 [0m4.224 ms - -[0m
+[0mGET /signin [32m200 [0m2.007 ms - 476[0m
+[0mGET /users [32m200 [0m3.283 ms - 534[0m

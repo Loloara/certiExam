@@ -1,19 +1,18 @@
 {
-  "name": "test",
+  "name": "certiExam",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "for smilegate first task",
+  "main": "app.js",
   "dependencies": {
-    "body-parser": "^1.18.1",
-    "compression": "^1.7.0",
+    "body-parser": "^1.18.2",
+    "compression": "^1.7.1",
     "connect-flash": "^0.1.1",
     "ejs": "^2.5.7",
-    "express": "^4.16.1",
-    "express-session": "^1.15.5",
-    "forever": "^0.15.3",
-    "method-override": "^2.3.9",
-    "mongoose": "^4.11.13",
-    "morgan": "^1.8.2",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "method-override": "^2.3.10",
+    "mongoose": "^5.0.0-rc1",
+    "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
   },
@@ -21,8 +20,11 @@
     "color": "latest"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "forever start -l D:/project/certiExam/logfile.log -a app.js",
+    "restart": "forever restart app.js",
+    "stop": "forever stop app.js"
   },
-  "author": "",
+  "author": "Jongku Lee",
   "license": "ISC"
 }

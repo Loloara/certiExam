@@ -20,3 +20,5 @@ ValidationError: User validation failed: password: Password should be at least 8
 [0mGET / [36m304 [0m4.224 ms - -[0m
 [0mGET /signin [32m200 [0m2.007 ms - 476[0m
 [0mGET /users [32m200 [0m3.283 ms - 534[0m
+(node:6220) [DEP0013] DeprecationWarning: Calling an asynchronous function without callback is deprecated.
+error: Forever detected script exited with code: 1

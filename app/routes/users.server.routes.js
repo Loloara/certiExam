@@ -1,5 +1,5 @@
-var users = require('../../app/controllers/users.server.controller'),
-    passport = require('passport');
+const users = require('../../app/controllers/users.server.controller'),
+      passport = require('passport');
 
 module.exports = function(app) {
   app.route('/signup')

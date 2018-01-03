@@ -1,9 +1,8 @@
-var User = require('mongoose').model('User'),
-    passport = require('passport')
-    ;
+const User = require('mongoose').model('User'),
+      passport = require('passport');
 
-var getErrorMessage = function(err){
-  var message = '';
+const getErrorMessage = function(err){
+  let message = '';
   if(err.code){
     switch(err.code){
       case 11000:
@@ -14,7 +13,7 @@ var getErrorMessage = function(err){
         message = 'Something went Wrong';
     }
   }else{
-    for(var errName in err.errors){
+    for(let errName in err.errors){
       if(err.errors[errName].message){
         message = err.errors[errName].message;
       }
@@ -47,8 +46,8 @@ exports.renderSignup = function(req, res, next){
 
 exports.signup = function(req, res, next){
   if(!req.user){
-    var user = new User(req.body);
-    var message = null;
+    const user = new User(req.body);
+    let message = null;
 
     user.provider = 'local';
 

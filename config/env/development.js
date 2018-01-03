@@ -1,4 +1,4 @@
 module.exports = {
-  db : 'mongodb://localhost/database',
+  db : 'mongodb://localhost/certiExam',
   sessionSecret : 'thisissessionSecret'
 }

@@ -40,30 +40,11 @@ UserSchema.pre('save', function(next){
 });
 
 UserSchema.methods.hashPassword = function(password){
-  console.log("now hashPassword");
   return crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('base64');
 };
 
 UserSchema.methods.authenticate = function(password){
-  console.log("now authenticate");
   return this.password === this.hashPassword(password);
-};
-
-UserSchema.statics.findUniqueUserid = function(userid, suffix, callback){
-  var _this = this;
-  var possibleUserid = userid + (suffix || '');
-
-  _this.findById(possibleUserid, function(err, user){
-    if(!err){
-      if(!user){
-        callback(possibleUserid);
-      }else{
-        return _this.findUniqueUserid(userid, (suffix || 0) + 1, callback);
-      }
-    }else{
-      callback(null);
-    }
-  });
 };
 
 mongoose.model('User', UserSchema);

@@ -3,16 +3,15 @@ const mongoose = require('mongoose'),
       Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
+  _id : {
+    type : String,
+    trim : true,
+    required : 'User ID is required'
+  },
   username : {
     type : String,
     trim : true,
     required : true
-  },
-  userid : {
-    type : String,
-    trim : true,
-    unique : true,
-    required : 'User ID is required'
   },
   password : {
     type : String,
@@ -30,7 +29,7 @@ const UserSchema = new Schema({
     type : Date,
     default : Date.now
   }
-});
+}, {versionKey: false});
 
 UserSchema.pre('save', function(next){
   if(this.password){
@@ -41,10 +40,12 @@ UserSchema.pre('save', function(next){
 });
 
 UserSchema.methods.hashPassword = function(password){
+  console.log("now hashPassword");
   return crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha512').toString('base64');
 };
 
 UserSchema.methods.authenticate = function(password){
+  console.log("now authenticate");
   return this.password === this.hashPassword(password);
 };
 
@@ -52,9 +53,7 @@ UserSchema.statics.findUniqueUserid = function(userid, suffix, callback){
   var _this = this;
   var possibleUserid = userid + (suffix || '');
 
-  _this.findOne({
-    userid : possibleUserid
-  }, function(err, user){
+  _this.findById(possibleUserid, function(err, user){
     if(!err){
       if(!user){
         callback(possibleUserid);

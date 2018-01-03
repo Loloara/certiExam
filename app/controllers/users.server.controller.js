@@ -49,16 +49,15 @@ exports.signup = function(req, res, next){
     const user = new User(req.body);
     let message = null;
 
-    user.provider = 'local';
-
     user.save(function(err){
-      console.log('save');
       if(err){
+        console.log(err);
         message = getErrorMessage(err);
 
         req.flash('error', message);
         return res.redirect('/signup');
       }
+      console.log('save');
       req.login(user, function(err){
         if(err) return next(err);
         return res.redirect('/');

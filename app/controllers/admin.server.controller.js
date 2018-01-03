@@ -27,9 +27,7 @@ exports.read = function(req,res){
 };
 
 exports.userByID = function(req,res,next,id){
-  User.findOne({
-    userid : id
-  }, function(err, user){
+  User.findById(id, function(err, user){
     if(err){
       return next(err);
     }else{

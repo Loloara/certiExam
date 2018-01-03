@@ -2,10 +2,9 @@ const LocalStrategy = require('passport-local').Strategy,
       User = require('mongoose').model('User');
 
 module.exports = function(passport){
-  passport.use(new LocalStrategy(function(username, password, done){
-    User.findOne({
-      userid : username
-    }, function(err, user){
+  console.log('now local.js');
+  passport.use(new LocalStrategy(function(userid, password, done){
+    User.findById(userid, function(err, user){
       if(err){
         return done(err);
       }

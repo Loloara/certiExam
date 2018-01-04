@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ./partials/header %>
+  </head>
+  <body>
+    <% for(var i in messages){ %>
+    <div class="flash"><%= messages[i] %></div>
+    <% } %>
+    <h1>Manage Members</h1>
+
+    <table>
+      <thead>
+          <tr>
+            <th>User ID</th>
+            <th>User Name</th>
+            <th>Grade</th>
+            <th>createdAt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          <% posts.forEach(function(post){ %>
+            <td><%= user._id %></td>
+            <td><%= user.username %></td>
+            <td><%= user.grade %></td>
+          </tr>
+        </tbody>
+         <% }) %>
+    </table>
+
+    <a href="/"><button>Back</button></a>
+
+    <footer>
+      <% include ./partials/footer %>
+    </footer>
+  </body>
+</html>

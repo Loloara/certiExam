@@ -69,6 +69,8 @@ exports.renderLeave = function(req, res){
 exports.signup = function(req, res){
   if(!req.user){
     const user = new User(req.body);
+    user.grade = 1;
+
     let message = null;
 
     user.save(function(err){
@@ -88,7 +90,7 @@ exports.signup = function(req, res){
               });
           }
           res.redirect('/');
-        });  
+        });
       }
     });
   }else{

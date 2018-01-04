@@ -86,3 +86,14 @@ exports.deleteAll = function(req,res){
     }
   });
 };
+
+exports.renderManage = function(req, res){
+  if(req.user){
+    res.render('manage', {
+      title : 'Manage Form',
+      messages : req.flash('error')
+    });
+  }else{
+    res.redirect('/');
+  }
+};

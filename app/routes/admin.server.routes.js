@@ -11,5 +11,8 @@ module.exports = function(app){
   .put(users.update)
   .delete(users.delete);
 
+  app.route('/manage')
+    .get(users.renderManage);
+
   app.param('userId', users.userByID);  //app.route보다 먼저 실행됨
 }

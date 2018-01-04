@@ -13,17 +13,26 @@
       <thead>
           <tr>
             <th>User ID</th>
-            <th>User Name</th>
+            <th>Name</th>
             <th>Grade</th>
             <th>createdAt</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-          <% posts.forEach(function(post){ %>
+          <% users.forEach(function(user){ %>
             <td><%= user._id %></td>
             <td><%= user.username %></td>
-            <td><%= user.grade %></td>
+            <td>
+              <% if(user.grade === 3){ %>
+                슈퍼 관리자
+              <% } else if(user.grade === 2){ %>
+                관리자
+              <% } else{ %>
+                회원
+              <% } %>
+            </td>
+            <td><%= user.createdAt %></td>
           </tr>
         </tbody>
          <% }) %>

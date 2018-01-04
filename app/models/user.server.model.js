@@ -28,7 +28,7 @@ const UserSchema = new Schema({
   grade : {
     type : Number
   },
-  created : {
+  createdAt : {
     type : Date,
     default : Date.now
   }

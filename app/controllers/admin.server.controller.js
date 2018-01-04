@@ -27,7 +27,7 @@ exports.list = function(req,res){
     }else{
       res.json(users);
     }
-  })
+  });
 };
 
 exports.read = function(req,res){
@@ -89,10 +89,16 @@ exports.deleteAll = function(req,res){
 
 exports.renderManage = function(req, res){
   if(req.user){
-    res.render('manage', {
-      title : 'Manage Form',
-      messages : req.flash('error')
-    });
+    User.find({})
+      .sort({grade : -1})
+      .select({salt:0, password:0})
+      .exec(function(err, users){
+        res.render('manage', {
+          title : 'Manage Form',
+          messages : req.flash('error'),
+          users : users
+        });
+      });
   }else{
     res.redirect('/');
   }

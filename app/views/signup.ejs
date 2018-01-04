@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
-      <%= title %>
-    </title>
+    <% include ../partials/header %>
   </head>
   <body>
     <% for(var i in messages){ %>
@@ -27,5 +25,8 @@
     </form>
     <a href="/"><button>Back</button></a>
 
+    <footer>
+      <% include ../partials/footer %>
+    </footer>
   </body>
 </html>

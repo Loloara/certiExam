@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
-      <%= title %>
-    </title>
+    <% include ../partials/header %>
   </head>
   <body>
     <% if (username) { %>
@@ -15,5 +13,9 @@
       <a href="/signup">Signup</a>
       <a href="/signin">Signin</a>
     <% } %>
+
+    <footer>
+      <% include ../partials/footer %>
+    </footer>
   </body>
 </html>

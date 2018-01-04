@@ -21,7 +21,7 @@ module.exports = function(){
     extended : true
   }));
   app.use(bodyParser.json());
-  app.use(methodOverride());
+  app.use(methodOverride('_method'));
 
   app.use(session({
     saveUninitialized : true,
@@ -40,6 +40,6 @@ module.exports = function(){
   require('../app/routes/users.server.routes.js')(app);
   require('../app/routes/admin.server.routes.js')(app);
   app.use(express.static('./public'));
-  
+
   return app;
 }

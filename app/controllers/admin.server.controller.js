@@ -1,21 +1,29 @@
 const User = require('mongoose').model('User');
 
-exports.create = function(req,res,next){
+exports.create = function(req,res){
   const user = new User(req.body);
 
   user.save(function(err){
     if(err){
-      return next(err);
+      res.json({
+        "result" : "ERROR",
+        "code" : err.code,
+        "message" : err
+      });
     }else{
       res.json(user);
     }
   });
 };
 
-exports.list = function(req,res,next){
+exports.list = function(req,res){
   User.find(function(err,users){
     if(err){
-      return next(err);
+      res.json({
+        "result" : "ERROR",
+        "code" : err.code,
+        "message" : err
+      });
     }else{
       res.json(users);
     }
@@ -37,30 +45,42 @@ exports.userByID = function(req,res,next,id){
   });
 };
 
-exports.update = function(req,res,next){
+exports.update = function(req,res){
   User.findByIdAndUpdate(req.user.id, req.body, function(err,user){
     if(err){
-      return next(err);
+      res.json({
+        "result" : "ERROR",
+        "code" : err.code,
+        "message" : err
+      });
     }else{
       res.json(user);
     }
   });
 };
 
-exports.delete = function(req,res,next){
+exports.delete = function(req,res){
   req.user.remove(function(err){
     if(err){
-      return next(err);
+      res.json({
+        "result" : "ERROR",
+        "code" : err.code,
+        "message" : err
+      });
     }else{
       res.json(req.user);
     }
   });
 };
 
-exports.deleteAll = function(req,res,next){
+exports.deleteAll = function(req,res){
   User.remove({},function(err){
     if(err){
-      next(err);
+      res.json({
+        "result" : "ERROR",
+        "code" : err.code,
+        "message" : err
+      });
     }else{
       res.json('deleteAll success');
     }

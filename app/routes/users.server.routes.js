@@ -16,4 +16,12 @@ module.exports = function(app) {
     }));
 
   app.get('/signout', users.signout);
+
+  app.route('/edit')
+    .get(users.renderEdit)
+    .put(users.editUser);
+
+  app.route('/leave')
+    .get(users.renderLeave)
+    .delete(users.leave);
 };

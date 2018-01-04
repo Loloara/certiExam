@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      <%= title %>
+    </title>
+  </head>
+  <body>
+    <% for(var i in messages){ %>
+    <div class="flash"><%= messages[i] %></div>
+    <% } %>
+
+    <form action="/leave?_method=DELETE" method="post">
+      <button>Leave</button>
+    </form>
+    <a href="/"><button>Back</button></a>
+
+  </body>
+</html>

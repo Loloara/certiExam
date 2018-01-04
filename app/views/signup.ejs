@@ -7,8 +7,9 @@
   </head>
   <body>
     <% for(var i in messages){ %>
-    <div calss="flash"><%= messages[i] %></div>
+    <div class="flash"><%= messages[i] %></div>
     <% } %>
+
     <form action="signup" method="post">
       <div>
         <label>Username : </label>
@@ -22,9 +23,9 @@
         <label>Password : </label>
         <input type="password" name="password">
       </div>
-      <div>
-        <input type="submit" value="Sign up">
-      </div>
+      <input type="submit" value="Sign up">
     </form>
+    <a href="/"><button>Back</button></a>
+
   </body>
 </html>

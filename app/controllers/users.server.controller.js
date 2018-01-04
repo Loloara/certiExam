@@ -22,51 +22,126 @@ const getErrorMessage = function(err){
   return message;
 };
 
-exports.renderSignin = function(req, res, next){
+exports.renderSignin = function(req, res){
   if(!req.user){
     res.render('signin',{
       title : 'Sign-in Form',
       messages : req.flash('error') || req.flash('info')
     });
   }else{
-    return res.redirect('/');
+    res.redirect('/');
   }
 };
 
-exports.renderSignup = function(req, res, next){
+exports.renderSignup = function(req, res){
   if(!req.user){
     res.render('signup', {
       title : 'Sign-up Form',
       messages : req.flash('error')
     });
   }else{
-    return res.redirect('/');
+    res.redirect('/');
   }
 };
 
-exports.signup = function(req, res, next){
+exports.renderEdit = function(req, res){
+  if(req.user){
+    res.render('edit', {
+      title : 'Edit Form',
+      messages : req.flash('error')
+    });
+  }else{
+    res.redirect('/');
+  }
+};
+
+exports.renderLeave = function(req, res){
+  if(req.user){
+    res.render('leave', {
+      title : 'Leave Form',
+      messages : req.flash('error')
+    });
+  }else{
+    res.redirect('/');
+  }
+};
+
+exports.signup = function(req, res){
   if(!req.user){
     const user = new User(req.body);
     let message = null;
 
     user.save(function(err){
       if(err){
-        console.log(err);
         message = getErrorMessage(err);
 
         req.flash('error', message);
-        return res.redirect('/signup');
+        res.redirect('/signup');
+      }else{
+        console.log('save');
+        req.login(user, function(err){
+          if(err){
+              res.json({
+                "result" : "ERROR",
+                "code" : err.code,
+                "message" : err
+              });
+          }
+          res.redirect('/');
+        });  
       }
-      console.log('save');
-      req.login(user, function(err){
-        if(err) return next(err);
-        return res.redirect('/');
-      });
     });
   }else{
-    return res.redirect('/');
+    res.redirect('/');
   }
 };
+
+exports.editUser = function(req, res){
+  if(!req.user){
+    res.redirect('/');
+  }else{
+    req.user.username = req.body.username;
+    req.user.password = req.body.password;
+    let message = null;
+
+    req.user.save(function(err){
+      if(err){
+        message = getErrorMessage(err);
+        req.flash('error', message);
+        res.redirect('/edit');
+      }else{
+        req.login(req.user, function(err){
+          if(err){
+              res.json({
+                "result" : "ERROR",
+                "code" : err.code,
+                "message" : err
+              });
+          }
+          res.redirect('/');
+        });
+      }
+    });
+  }
+}
+
+exports.leave = function(req, res){
+  if(!req.user){
+    res.redirect('/');
+  }else{
+    req.user.remove(function(err){
+      if(err){
+        res.json({
+          "result" : "ERROR",
+          "code" : err.code,
+          "message" : err
+        });
+      }else{
+        res.redirect('/');
+      }
+    });
+  }
+}
 
 exports.signout = function(req,res){
   req.logout();

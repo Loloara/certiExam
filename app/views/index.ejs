@@ -4,13 +4,14 @@
     <% include ./partials/header %>
   </head>
   <body>
-    <% if (username) { %>
-      <h2>Hello <%=username %></h2>
+    <% if (user) { %>
+      <h2>Hello <%=user.username %></h2>
       <a href="/signout">Sign out</a>
       <a href="/edit">Edit</a>
       <a href="/leave">Leave</a> <br />
-
+    <% if (user.grade > 1) { %>
       <a href="/manage">Manage</a> <br />
+    <% } %>
     <% } else { %>
       <a href="/signup">Signup</a>
       <a href="/signin">Signin</a>

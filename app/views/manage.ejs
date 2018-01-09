@@ -7,20 +7,29 @@
     <% for(var i in messages){ %>
     <div class="flash"><%= messages[i] %></div>
     <% } %>
+
+    <a href="/"><button>Back</button></a>
     <h1>Manage Members</h1>
 
     <table>
       <thead>
           <tr>
-            <th>User ID</th>
-            <th>Name</th>
-            <th>Grade</th>
-            <th>createdAt</th>
+            <th>NO</th>
+            <th>아이디</th>
+            <th>이름</th>
+
+
+            <th>등급</th>
+            <th>가입일</th>
+            <th>최근접속일</th>
+            <th>수정/탈퇴</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+          <% let no=1; %>
           <% users.forEach(function(user){ %>
+            <td><%= no++ %></td>
             <td><%= user._id %></td>
             <td><%= user.username %></td>
             <td>
@@ -33,12 +42,15 @@
               <% } %>
             </td>
             <td><%= user.createdAt %></td>
+            <td><%= user.recentLogin %></td>
+            <td>
+              <button>수정</button>
+              <button>탈퇴</button>
+            </td>
           </tr>
         </tbody>
          <% }) %>
     </table>
-
-    <a href="/"><button>Back</button></a>
 
     <footer>
       <% include ./partials/footer %>

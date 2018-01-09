@@ -89,6 +89,9 @@ exports.deleteAll = function(req,res){
 
 exports.renderManage = function(req, res){
   if(req.user){
+    if(req.user.grade < 2){
+      res.redirect('/');
+    }
     User.find({})
       .sort({grade : -1})
       .select({salt:0, password:0})

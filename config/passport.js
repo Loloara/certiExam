@@ -3,8 +3,11 @@ const passport = require('passport'),
 
 module.exports = function(){
   const User = mongoose.model('User');
-
   passport.serializeUser(function(user, done){
+    user.recentLogin = Date.now();
+    User.findByIdAndUpdate(user._id, user, function(err, _user){
+      if(err) console.log('ERROR: passport.serializeUser');
+    });
     done(null, user._id);
   });
 

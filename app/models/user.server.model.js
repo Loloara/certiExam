@@ -31,6 +31,10 @@ const UserSchema = new Schema({
   createdAt : {
     type : Date,
     default : Date.now
+  },
+  recentLogin : {
+    type : Date,
+    default : Date.now
   }
 }, {versionKey: false});
 
